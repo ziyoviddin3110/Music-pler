@@ -1,0 +1,272 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  background-image: url("../imgs/360_F_410179527_ExxSzamajaCtS16dyIjzBRNruqlU5KMA11.jpg");
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 100px 0px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+}
+.card {
+  padding: 20px 20px;
+  width: 400px;
+  height: 600px;
+  box-shadow: 0px 0px 9px 2.5px ghostwhite;
+  border-radius: 15px;
+  color: white;
+  background-color: rgba(220, 220, 220, 0.218);
+  position: relative;
+  overflow: hidden;
+}
+.barss {
+  display: flex;
+  justify-content: space-between;
+}
+.barss .fa-arrow-right {
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.barss .fa-arrow-right:hover {
+  color: rgb(237, 204, 20);
+}
+.card .fa-bars {
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.card .fa-bars:hover {
+  color: rgb(237, 204, 20);
+}
+
+.card h1 {
+  text-align: center;
+  padding: 15px 0px;
+}
+
+.card span {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0px;
+}
+
+.card img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  animation: anime 5.5s linear infinite;
+  animation-play-state: paused;
+}
+body.plaing img{
+  animation-play-state: running;
+}
+.card .input {
+  text-align: center;
+}
+.card .input .volume-slider {
+  cursor: pointer;
+}
+
+.block {
+  width: 310px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.block .box {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 15px 5px;
+}
+.box p {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+.block .box1 {
+  width: 310px;
+  height: 7px;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.block .box1 .box2 {
+  width: 0%;
+  height: 6.8px;
+  background-color: orange;
+  color: blue;
+  border-radius: 5px;
+}
+
+.playback-controls {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 15px;
+  padding-top: 25px;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+.control-btn:hover {
+  color: #3498db;
+}
+
+.modal_content {
+  margin-top: 30px;
+  width: 300px;
+  color: rgb(16, 13, 232);
+  border-radius: 15px;
+  padding: 20px 15px;
+  background-color: rgba(249, 243, 243, 0.418);
+  backdrop-filter: blur(2px);
+  word-spacing: 50px;
+  transition: 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 2;
+  gap: 10px;
+  top: -100%;
+  left: 50px;
+}
+.modal_content h3 {
+  font-size: 30px;
+  cursor: pointer;
+}
+.modal_content.active {
+  top: 18px;
+}
+.modal_content h3:hover{
+  color: rgb(0, 255, 60);
+}
+.play .fa-pause{
+  display: none;
+}
+body.plaing .play .fa-pause{
+  display: block;
+}
+body.plaing .play .fa-play{
+  display: none;
+}
+
+@keyframes anime {
+  0%{
+    transform: rotate(0deg);
+  }100%{
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+
+@media (max-width: 447px) {
+  
+  .container {
+    padding: 0 10px; /* Kichik ekran uchun chetlardan bo‘shliqni kamaytirish */
+  }
+
+  header {
+    height: 100vh; /* Ekran balandligini moslashtirish */
+    padding: 50px 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Karta tuzilmasi */
+  .cards {
+    flex-direction: column; /* Karta elementlarini ustma-ust joylashtirish */
+    align-items: center;
+    margin-top: 80px;
+  }
+
+  .card {
+    width: 90%; /* Kartaning kengligini ekranga moslashtirish */
+    height: 500px; /* Kartaning balandligini avtomatik qilish */
+    padding: 25px 25px; /* Ichki bo‘shliqni kamaytirish */
+  }
+  .modal_content {
+    left: 23px;
+  }
+  .card img {
+    width: 150px; /* Rasmlarning kattaligini kichraytirish */
+    height: 150px;
+  }
+
+  .card h1 {
+    font-size: 20px; /* Sarlavha matn o‘lchamini kichraytirish */
+  }
+
+  .card span {
+    padding: 20px 0; /* Chetlardagi bo‘shliqni kamaytirish */
+  }
+
+  .card .fa-bars {
+    font-size: 20px; /* Ikonka o‘lchamini kichikroq qilish */
+  }
+  .barss .fa-arrow-right {
+    font-size: 20px; /* Ikonka o‘lchamini kichikroq qilish */
+  }
+  /* Progress bar va tugmalar */
+  .block {
+    width: 90%; /* Blok kengligini moslashtirish */
+    margin-top: 35px;
+  }
+
+  .block .box {
+    padding: 10px; /* Ichki bo‘shliqni kamaytirish */
+  }
+
+  .block .box p {
+    font-size: 16px; /* Matnni kichraytirish */
+  }
+
+  .block .box1 {
+    width: 100%; /* Progress barni moslashuvchan qilish */
+  }
+
+  /* Ovoz balandligi slider */
+  .card .input .volume-slider {
+    width: 55%; /* Slider kengligini ekranga moslashtirish */
+  }
+
+  /* Ovoz boshqaruv tugmalari */
+  .playback-controls {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 30px;
+    padding-top: 15px;
+  }
+
+  .control-btn {
+    font-size: 30px; /* Tugma kattaligini moslashtirish */
+    margin: 0 10px;
+  }
+}
