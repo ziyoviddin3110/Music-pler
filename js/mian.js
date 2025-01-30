@@ -19,7 +19,8 @@ const music = ["139891619.out", "Gokyuzu___Cever", "Mustang", "535630060"];
 
 var index = [0];
 music.map((item,index)=>{
-  
+  modal_content.innerHTML += ` <h3 onclick=chenchMadal(${index})> ${item}</h3>
+                `;
 })
 const changeMusic = (id) => {
   mainImgs.setAttribute("src", `./imgs/${music[index]}.jpg`);
@@ -27,10 +28,7 @@ const changeMusic = (id) => {
   nemeMusic.textContent = music[index];
   audio.play();
 
-  music.map((item,index)=>{
-    modal_content.innerHTML += ` <h3 onclick=chenchMadal(${index})> ${item}</h3>
-                  `;
-  })
+  
   
 };
 changeMusic();
@@ -46,6 +44,9 @@ const chenchMadal = (index)=>{
 }
 
 prev.addEventListener("click", () => {
+  prevBtn()
+});
+const prevBtn = ()=>{
   index--;
   if (index < 0) {
     index = music.length - 1;
@@ -54,9 +55,11 @@ prev.addEventListener("click", () => {
   audio.play();
   body.classList.add("plaing");
   changeMusic();
-});
-
+}
 play.addEventListener("click", () => {
+playBtn()
+});
+const playBtn = ()=>{
   if (body.classList.contains("plaing")) {
     audio.pause();
     body.classList.remove("plaing");
@@ -64,7 +67,7 @@ play.addEventListener("click", () => {
     audio.play();
     body.classList.add("plaing");
   }
-});
+}
 next.addEventListener("click", () => {
   nextMusic();
 });
@@ -145,8 +148,70 @@ box1.addEventListener("click", (e) => {
   audio.currentTime = curTime;
 });
 
-input.addEventListener("input", () => {
-  var ovoz = input.value;
+const ovozvelu = ()=>{
+  input.addEventListener("input", () => {
+    var ovoz = input.value;
+  
+    audio.volume = ovoz / 100;
+  });
+}
 
-  audio.volume = ovoz / 100;
+ovozvelu()
+
+document.addEventListener("keypress",(e)=>{
+  // console.log(e);
+  
+  if(e.key == "Enter" || e.key == " "){
+    
+    playBtn()
+
+  }
+  
+})
+document.addEventListener("keydown", (e) => {
+
+  if (e.key === "ArrowRight") { 
+    nextMusic();
+  }
 });
+
+document.addEventListener("keydown", (e) => {
+  // console.log(e); 
+
+  if (e.key === "ArrowLeft") { 
+    prevBtn()
+  }
+});
+
+
+
+const audio1 = document.querySelector("audio");
+const volumeSlider = document.querySelector("input");
+
+audio.volume = 0.8;
+volumeSlider.value = audio.volume * 100; 
+
+const updateVolumeUI = () => {
+  volumeSlider.value = audio.volume * 100; 
+};
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowUp") {
+    if (audio.volume < 1) {
+      audio.volume = Math.min(1, audio.volume + 0.1);
+      updateVolumeUI();
+    }
+  }
+  if (e.key === "ArrowDown") {
+    if (audio.volume > 0) {
+      audio.volume = Math.max(0, audio.volume - 0.1);
+      updateVolumeUI();
+    }
+  }
+});
+
+volumeSlider.addEventListener("input", () => {
+  audio.volume = volumeSlider.value / 100;
+});
+
+audio.addEventListener("volumechange", updateVolumeUI);
